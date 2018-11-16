@@ -1,0 +1,48 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">Drinkers</h1>
+      <p class="lead">Find information about each drinker</p>
+
+  </div> 
+</div> 
+
+
+
+
+
+
+<div class="container">
+  
+  <br>
+  <span class="ui-float-label">
+      <input id="float-input" type="text" size="30" pInputText> 
+      <label for="float-input">Drinker Name</label>
+  </span>
+  <br>
+  
+  <p-table [value]="drinkers" [paginator]="true" [rows]="15">
+      <ng-template pTemplate="header">
+          <tr>
+              <th >Name</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>State</th>
+
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-drinker>
+          <tr>
+              <td>
+                  <a routerLink="/drinkers/{{ drinker.name }}">
+                    {{ drinker.name }}
+                </a>
+              </td>
+              <td>{{ drinker.phone }}</td>
+              <td>{{ drinker.address }}</td>
+              <td>{{ drinker.state }}</td>
+
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+<br><br>

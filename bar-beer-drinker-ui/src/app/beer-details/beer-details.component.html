@@ -1,0 +1,70 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">{{ beerName }}</h1>
+
+  </div> 
+</div> 
+
+  
+<div class="container">
+<br><br>
+<p-tabView >
+    <p-tabPanel header="Locations">
+            <div class="container">
+                    <br>
+                    <h2 class="text-center font-weight-light">Locations</h2>
+                    <br>
+
+                    <div>
+                      <p-dropdown class="float-right text-left"  *ngIf="filterOptions" [options]="filterOptions" (onChange)="sortBy($event)">Sort By</p-dropdown>
+                    </div>
+                    <br><br>
+                    <p-table [value]="beerLocations"  sortMode="multiple" sortField="price" [paginator]="true" [rows]="10">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Price</th>
+                                <th>Bar</th>
+                                <th>Address</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td>{{ item.price | currency }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.address }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                  </div>
+        <br><br><br>            
+    
+    </p-tabPanel>
+    <p-tabPanel header="Top Locations">
+        <div class="container">
+            <br>
+            <div id="bargraphTopLocations"></div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Top Consumers">
+        <div class="container">
+            <br>
+            <div id="bargraphTopDrinkers"></div>
+        </div>
+        
+    </p-tabPanel>
+    <p-tabPanel header="Time Distribution ">
+        <div class="container">
+            <br>
+            <div id="bargraphTimeDist"></div>
+        </div>
+        
+    </p-tabPanel>
+    
+</p-tabView>
+
+
+</div>
+<br><br><br>
+
+
+

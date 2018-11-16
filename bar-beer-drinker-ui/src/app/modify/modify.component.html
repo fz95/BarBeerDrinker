@@ -1,0 +1,341 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Modify the Database!</h1>
+      <p class="lead">UPDATES/DELETIONS/INSERTIONS</p>
+    </div>
+  </div>
+  
+  
+
+  <div class="container">
+      <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="425" #cd>
+          <p-footer>
+              <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+              <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+
+            </p-footer>
+      </p-confirmDialog>
+
+    <br><br>
+    <p-tabView >
+        <p-tabPanel header="Bars">
+            <br>
+            <button pButton type="button" (click)="insertBarEvent($event)" label="Insert A New Bar" ></button>
+              <div class="ui-g ui-fluid">
+                  <div class="ui-g-12 ui-md-4">
+                      <div class="ui-inputgroup">
+                          <input id=bars-barName type="text" pInputText placeholder="Bar Name">         
+                      </div>
+                  </div>
+                  <div class="ui-g-12 ui-md-4">
+                      <div class="ui-inputgroup">
+                          <input id=bars-address type="text" pInputText placeholder="Address">   
+                      </div>
+                  </div>
+                  <div class="ui-g-12 ui-md-4">
+                      <div class="ui-inputgroup">
+                          <input id=bars-state type="text" pInputText placeholder="State">      
+                      </div>
+                  </div>
+              </div>
+            
+            <br><br>
+            <p-table [value]="bars" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Bar ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>State</th>
+                    <th>Modify</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-bar>
+                  <tr>
+                    <td>{{ bar.barID }}</td>
+                    <td>{{ bar.name }}</td>
+                    <td>{{ bar.address }}</td>
+                    <td>{{ bar.state }}</td>
+                    <td><button pButton [id]=bar.barID type="button" label="Edit"  (click)="editBarClick($event)"></button>&nbsp;&nbsp;  
+                      <button pButton [id]=bar.barID type="button" label="Delete" (click)="deleteBarClick($event)"></button>
+                    </td>
+        
+                  </tr>
+                </ng-template>
+              </p-table>
+        </p-tabPanel>
+              
+        <p-tabPanel header="Bar Times">
+        </p-tabPanel>
+
+        <p-tabPanel header="Sells">
+        </p-tabPanel>
+
+        <p-tabPanel header="Drinkers">
+            <br>
+            <button pButton type="button" (click)="insertDrinkerEvent($event)" label="Insert A New Drinker" ></button>
+            <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <input id=drinker-name type="text" pInputText placeholder="Name">         
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <input id=drinker-phone type="text" pInputText placeholder="Phone">   
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <input id=drinker-address type="text" pInputText placeholder="Address">      
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                            <div class="ui-inputgroup">
+                                <input id=drinker-state type="text" pInputText placeholder="State">      
+                            </div>
+                    </div>
+                </div>
+            
+            <br><br>
+
+            <p-table [value]="drinkers" [paginator]="true" [rows]="15">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Drinker ID</th>
+                        <th >Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>State</th>
+                        <th>Modify</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-drinker>
+                    <tr>
+                        <td>{{ drinker.drinkerID }}</td>
+                        <td>{{ drinker.name }}</td>
+                        <td>{{ drinker.phone }}</td>
+                        <td>{{ drinker.address }}</td>
+                        <td>{{ drinker.state }}</td>
+                        <td><button pButton [id]=drinker.drinkerID type="button" label="Edit"  (click)="editDrinkerClick($event)"></button>&nbsp;&nbsp;  
+                            <button pButton [id]=drinker.drinkerID type="button" label="Delete" (click)="deleteDrinkerClick($event)"></button>
+                        </td>
+          
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </p-tabPanel>
+
+        <p-tabPanel header="Frequents">
+            <br>
+            <button pButton type="button" label="Make A Drinker Frequent A Bar" ></button>
+
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <input id=frequents-drinker type="text" pInputText placeholder="Name">         
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <input id=frequents-bar type="text" pInputText placeholder="Bar">   
+                        </div>
+                    </div>
+                </div>
+            
+            <br><br>
+            <p-table [value]="frequents" [paginator]="true" [rows]="15">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Drinker ID</th>
+                        <th >Name</th>
+                        <th>Bar ID</th>
+                        <th>Bar Name</th>
+                        <th>Modify</th>
+
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-frequent>
+                    <tr>
+                        <td>{{ frequent.drinkerID }}</td>
+                        <td>{{ frequent.drinkerName }}</td>
+                        <td>{{ frequent.barID }}</td>
+                        <td>{{ frequent.barName }}</td>
+                        <td><button pButton type="button" label="Edit" ></button>&nbsp;&nbsp;  
+                          <button pButton type="button" label="Delete" ></button>
+                        </td>
+          
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
+        </p-tabPanel>
+        
+        <p-tabPanel header="Likes">
+          
+            <br>
+            <button pButton type="button" (click)="insertBarEvent($event)" label="Make a Drinker Like A New Beer" ></button>
+              <div class="ui-g ui-fluid">
+                  <div class="ui-g-12 ui-md-4">
+                      <div class="ui-inputgroup">
+                          <input id=beer-beerName type="text" pInputText placeholder="Name">         
+                      </div>
+                  </div>
+                  <div class="ui-g-12 ui-md-4">
+                      <div class="ui-inputgroup">
+                          <input id=beer-address type="text" pInputText placeholder="Beer">   
+                      </div>
+                  </div>
+            
+              </div>
+            
+            <br><br>
+            <p-table [value]="likes" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Drinker ID</th>
+                    <th>Drinker Name</th>
+                    <th>Beer Name</th>
+                    <th>Modify</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-likes>
+                  <tr>
+                    <td>{{ likes.drinkerID }}</td>
+                    <td>{{ likes.drinkerName }}</td>
+                    <td>{{ likes.beerName }}</td>
+                    <td><button pButton [id]=likes.drinkerID type="button" label="Edit"  (click)="editLikesClick($event)"></button>&nbsp;&nbsp;  
+                      <button pButton [id]=likes.drinkerID type="button" label="Delete" (click)="deleteLikesClick($event)"></button>
+                    </td>
+        
+                  </tr>
+                </ng-template>
+              </p-table>
+
+        </p-tabPanel>
+        
+        <p-tabPanel header="Food">
+                <br>
+                <button pButton type="button" (click)="insertFoodEvent($event)" label="Insert A New Food" ></button>
+                  <div class="ui-g ui-fluid">
+                      <div class="ui-g-12 ui-md-4">
+                          <div class="ui-inputgroup">
+                              <input id=bars-barName type="text" pInputText placeholder="Food">         
+                          </div>
+                      </div>
+                      <div class="ui-g-12 ui-md-4">
+                          <div class="ui-inputgroup">
+                              <input id=bars-address type="text" pInputText placeholder="Type">   
+                          </div>
+                      </div>
+                    </div>
+                <br><br>
+                <p-table [value]="foods" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Modify</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-food>
+                      <tr>
+                        <td>{{ food.name }}</td>
+                        <td>{{ food.type }}</td>
+                        <td><button pButton [id]=food.name type="button" label="Edit"  (click)="editFoodClick($event)"></button>&nbsp;&nbsp;  
+                          <button pButton [id]=food.name type="button" label="Delete" (click)="deleteFoodClick($event)"></button>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </p-table>  
+                </p-tabPanel>
+      
+
+        <p-tabPanel header="Soft Drinks">
+                <br>
+                <button pButton type="button" (click)="insertSoftDrinkEvent($event)" label="Insert A New Soft Drink" ></button>
+                  <div class="ui-g ui-fluid">
+                      <div class="ui-g-12 ui-md-4">
+                          <div class="ui-inputgroup">
+                              <input id=bars-barName type="text" pInputText placeholder="Brand">         
+                          </div>
+                      </div>
+                      <div class="ui-g-12 ui-md-4">
+                          <div class="ui-inputgroup">
+                              <input id=bars-address type="text" pInputText placeholder="Flavor">   
+                          </div>
+                      </div>
+                    </div>
+                <br><br>
+                <p-table [value]="softDrinks" [paginator]="true" [rows]="10">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Brand</th>
+                        <th>Flavor</th>
+                        <th>Modify</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-drink>
+                      <tr>
+                        <td>{{ drink.name }}</td>
+                        <td>{{ drink.flavor }}</td>
+                        <td><button pButton [id]=drink.name+drink.flavor type="button" label="Edit"  (click)="editSoftClick($event)"></button>&nbsp;&nbsp;  
+                          <button pButton [id]=drink.name+drink.flavor type="button" label="Delete" (click)="deleteSoftClick($event)"></button>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </p-table>  
+        </p-tabPanel>
+
+        <p-tabPanel header="Beers">
+
+
+            <br>
+            <button pButton type="button" label="Insert A New Drinker" ></button>
+            <br><br>
+            <p-table [value]="drinkers" [paginator]="true" [rows]="15">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Drinker ID</th>
+                        <th >Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>State</th>
+                        <th>Modify</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-drinker>
+                    <tr>
+                        <td>{{ drinker.drinkerID }}</td>
+                        <td>{{ drinker.name }}</td>
+                        <td>{{ drinker.phone }}</td>
+                        <td>{{ drinker.address }}</td>
+                        <td>{{ drinker.state }}</td>
+                        <td><button pButton type="button" label="Edit" ></button>&nbsp;&nbsp;  
+                          <button pButton type="button" label="Delete" ></button>
+                        </td>
+          
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </p-tabPanel>
+
+
+    </p-tabView>
+    
+    
+    </div>
+    <br><br><br>
+
+
+  <div class="form-group">
+  <label for="exampleFormControlTextarea1">Large textarea</label>
+  <textarea class="form-control rounded-0" id="sqlquery" rows="10"></textarea>
+  <button (click)=submitQuery() >SUBMIT</button>
+</div>

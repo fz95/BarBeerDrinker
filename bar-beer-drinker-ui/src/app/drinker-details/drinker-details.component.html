@@ -1,0 +1,53 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{ drinkerName }}</h1>
+        <p class="drinker-details" *ngIf="drinkerInfo">
+            {{ drinkerInfo?.address }}  |   {{ drinkerInfo?.state}}
+            <br>
+            {{ drinkerInfo?.phone }}
+      
+        </p>
+    </div>
+</div>
+
+
+
+<div class="container">
+  <br><br>
+  <p-tabView >
+      <p-tabPanel header="Transactions">
+        
+        <div>
+            <br>
+            <p style="text-align:center;">Find Out {{ drinkerName }}'s Transactions At Different Bars</p>
+            <br>
+            <p-panelMenu [model]="transactions" [style]="{'width':'100%'}"></p-panelMenu>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Spendings">
+        <div class="container">
+            <br>
+            <div id="bargraphSpendingsBar"></div>
+            <br>
+            <div id="bargraphSpendingsDay"></div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Most Ordered Beers">
+
+          <div class="container">
+              <br>
+              <div id="bargraphOrdered"></div>
+            </div>
+      </p-tabPanel>
+
+      <p-tabPanel header="Likes">
+          Content 3
+      </p-tabPanel>
+      <p-tabPanel header="Frequents">
+          Content 3
+      </p-tabPanel>
+  </p-tabView>
+
+    
+  </div>
+  <br><br><br>

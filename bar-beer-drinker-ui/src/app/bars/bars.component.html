@@ -1,0 +1,30 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Bars</h1>
+      <p class="lead">Bar Menus and Insights</p>
+    </div>
+  </div>
+  <div class="container">
+    <p-table [value]="bars" [paginator]="true" [rows]="10">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>State</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-bar>
+        <tr>
+  
+          <td>
+            <a routerLink="/bars/{{ bar.name }}">
+              {{ bar.name }}
+            </a>
+          </td>
+          <td>{{ bar.address }}</td>
+          <td>{{ bar.state }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <br><br> 
